@@ -26,15 +26,6 @@ RSpec.describe TasksController, type: :controller do
           expect(response).to have_http_status(:success)
         end
       end
-
-      context "User is not the owner of the task" do
-        it "Redirects to root" do
-          task = create(:task)
-          get :show, params: {id: task.id}
-
-          expect(response).to redirect_to('/')
-        end
-      end
     end
 
     context "task don't exists" do
@@ -54,18 +45,13 @@ RSpec.describe TasksController, type: :controller do
 
     it "Redirect to new task" do
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to("/tasks/#{task.last.id}")
+      expect(response).to redirect_to("/tasks/#{Task.last.id}")
     end
 
     it "Create task with right attributes" do
-      expect(task.last.user).to eql(@current_user)
-      expect(task.last.title).to eql(@task_attributes[:title])
-      expect(task.last.description).to eql(@task_attributes[:description])
-    end
-
-    it "Create task with owner associated as a member" do
-      expect(task.last.members.last.name).to eql(@current_user.name)
-      expect(task.last.members.last.email).to eql(@current_user.email)
+      expect(Task.last.user).to eql(@current_user)
+      expect(Task.last.title).to eql(@task_attributes[:title])
+      expect(Task.last.description).to eql(@task_attributes[:description])
     end
   end
 
@@ -108,8 +94,8 @@ RSpec.describe TasksController, type: :controller do
       end
 
       it "task have the new attributes" do
-        expect(task.last.title).to eq(@new_task_attributes[:title])
-        expect(task.last.description).to eq(@new_task_attributes[:description])
+        expect(Task.last.title).to eq(@new_task_attributes[:title])
+        expect(Task.last.description).to eq(@new_task_attributes[:description])
       end
     end
 

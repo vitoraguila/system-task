@@ -13,9 +13,7 @@ RSpec.describe Task, type: :model do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_presence_of(:user) }
-    it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to validate_presence_of(:type) }
-    it { is_expected.to validate_presence_of(:subtask) }
+    it { is_expected.to validate_presence_of(:type_status) }
     it { is_expected.to validate_presence_of(:task_date) }
   end
 
@@ -25,5 +23,9 @@ RSpec.describe Task, type: :model do
   end
  
   context 'Instanced Methods' do
+    it 'Verify if status equal enum :active' do
+      task = create(:task)
+      expect(task.status).to eq("#{:active}")
+    end
   end
 end

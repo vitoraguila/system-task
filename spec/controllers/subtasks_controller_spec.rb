@@ -2,25 +2,12 @@ require 'rails_helper'
 
 RSpec.describe SubtasksController, type: :controller do
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+    it "Create three subtask" do
+      subtasks = create_list(:subtask, 3)
+      expect(subtasks.count).to eq(3)
     end
   end
 
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
+  
 end
