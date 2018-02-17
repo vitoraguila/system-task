@@ -41,6 +41,8 @@ group :development, :test do
   gem "factory_bot_rails"
   # A library for generating fake data such as names, addresses, and phone numbers.
   gem "ffaker"
+  # Collection of testing matchers extracted from Shoulda 
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

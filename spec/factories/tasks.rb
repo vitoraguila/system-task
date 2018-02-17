@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :task do
-    title "MyString"
-    description "MyText"
-    user nil
-    type 1
-    status 1
+    title         { FFaker::Lorem.word }
+    description   { FFaker::Lorem.sentence }
+    user 
+    status        { :active }
+    type        { :public_status } 
+    task_date { FFaker::Time.date }
+    task_hour { rand(24).to_s }
   end
 end
