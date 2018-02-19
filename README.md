@@ -1,24 +1,92 @@
-# README
+# Test Avenue Code (System Task) - Vitor Hugo Águila Oliveira
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is made for purporse of tests to a job position in Avenue code company. Hope you enjoy it.
 
-Things you may want to cover:
+# Images Printscreen
 
-* Ruby version
+https://drive.google.com/open?id=1pyzZeJO5xndgL29nDz6blxA1arP4IyVi
 
-* System dependencies
 
-* Configuration
+## Installation
 
-* Database creation
+The first please install docker and docker-compose:
 
-* Database initialization
+```bash
+https://www.docker.com/community-edition
+```
 
-* How to run the test suite
+To run the application, first you need to clone the project to you machine by:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+git clone git@bitbucket.org:vitoraguila/ruby-coding-test.git
+```
 
-* Deployment instructions
+Enter to the new directory created:
 
-* ...
+```bash
+cd ruby-coding-test
+```
+
+Build the project with Docker
+
+```bash
+docker-compose build
+```
+
+
+### Installing gems
+
+To install all the gems that application needs, run:
+
+```bash
+docker-compose run --rm app bundle install
+```
+
+## Database
+
+To init the database, please run:
+
+```
+docker-compose run --rm app bundle exec rails db:create db:migrate
+```
+
+This will create the database and run all peding migrations.
+
+
+There is a seed file configuration in application, if you want populate database
+```
+docker-compose run --rm app bundle exec rails db:seed
+```
+
+### Running the app
+
+Run app in docker-compose:
+
+```bash
+docker-compose up
+```
+
+
+## Tests
+
+To run our tests, just run `rspec` command in application root directory.
+
+Controllers tests rspec:
+
+```bash
+docker-compose run --rm app bundle exec rspec spec/controllers
+```
+
+
+Models tests rspec:
+
+```bash
+docker-compose run --rm app bundle exec rspec spec/models
+```
+
+
+Features view tests with Capybara and rscpec:
+
+```bash
+docker-compose run --rm app bundle exec rspec spec/features
+```
