@@ -1,5 +1,4 @@
 $(document).on 'turbolinks:load', ->
-  $('.modal').modal();
   
   $('body').on 'click', 'a.remove_task', (e) ->
     $.ajax '/subtasks/'+ e.currentTarget.id,

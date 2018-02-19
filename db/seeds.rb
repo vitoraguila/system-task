@@ -12,7 +12,7 @@ puts "Standard user registered with success"
 
 puts "Register tasks of user standard"
 
-100.times do
+50.times do
   Task.create!(
     title: FFaker::Lorem.word, 
     description: FFaker::Lorem.sentence, 
@@ -30,7 +30,7 @@ puts "Tasks of user standard registered with success"
 
 puts "Register subtasks of user standard"
 
-300.times do
+100.times do
   Subtask.create!(
     description: FFaker::Lorem.sentence,
     task: Task.all.sample,

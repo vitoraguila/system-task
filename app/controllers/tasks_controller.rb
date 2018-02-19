@@ -61,10 +61,12 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    task_name = @task.title
 
-    respond_to do |format|
-      format.json { render json: true }
+    if @task.destroy
+      redirect_to tasks_path, notice: "The task (#{task_name}) was deleted success"
+    else
+      render :index
     end
   end
 

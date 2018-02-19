@@ -44,9 +44,9 @@
               %> 
               <%= link_to("FINISHED TASK", task_status_path(@task.id), :confirm => "Are you sure?", :method => :post, class: "#{ class_disabled } waves-effect waves-light btn blue left", style:"margin:10px;" )%>
               
-              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left" href="#modalAddSubtask">Create Subtask</a>
+              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left addsubtask" href="#modalAddSubtask">Create Subtask</a>
 
-              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left" href="#modalEditTask">Edit Task</a>
+              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left edittask" href="#modalEditTask">Edit Task</a>
 
               <%= form_for @task, method: 'delete', html: {class: 'remove_tasks left'} do |f| %>
                 <button type='submit' style="margin:10px;" class="waves-effect waves-light btn grey">Remove Task</button>
@@ -62,3 +62,22 @@
 <br/><br/>
 
 </div>
+
+<script>
+
+  $(document).ready(function(){
+    $('.modal').modal();
+    
+    $('.addsubtask').click(function () {
+      $('#modalAddSubtask').modal('open');
+      return false;
+    });
+    $('.edittask').click(function () {
+      $('#modalEditTask').modal('open');
+      return false;
+    });
+  });
+       
+</script>
+
+

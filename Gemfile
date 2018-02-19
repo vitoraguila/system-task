@@ -50,6 +50,8 @@ group :development, :test do
   gem "ffaker"
   # Collection of testing matchers extracted from Shoulda 
   gem 'shoulda-matchers', '~> 3.1'
+  # Acceptance test framework for web applications
+  gem 'capybara'
 end
 
 group :development do

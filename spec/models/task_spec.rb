@@ -25,7 +25,7 @@ RSpec.describe Task, type: :model do
   context 'Instanced Methods' do
     it 'Verify if status equal enum :active' do
       task = create(:task)
-      expect(task.status).to eq("#{:active}")
+      expect(task.status).to eq("#{:open}")
     end
   end
 end
