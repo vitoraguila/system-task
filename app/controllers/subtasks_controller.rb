@@ -1,7 +1,7 @@
 class SubtasksController < ApplicationController
-  before_action :authenticate_user!, except: [:opened]
+  before_action :authenticate_user!
 
-  before_action :set_subtask, only: [:show, :destroy, :update]
+  before_action :set_subtask, only: [:show, :destroy, :update, :status]
   before_action :is_owner?, only: [:destroy, :update]
 
   def create
@@ -9,13 +9,18 @@ class SubtasksController < ApplicationController
 
     respond_to do |format|
       if @subtask.save
-        format.json { render json: true }
+        format.json { render json: @subtask }
       else
         format.json { render json: @subtask.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def status
+    @subtask.update_attribute(:status, 1)
+    redirect_to task_path(@subtask.task), :notice => "Finished task"  
+  end
+  
   def destroy
     @subtask.destroy
 
@@ -41,7 +46,7 @@ class SubtasksController < ApplicationController
   end
 
   def subtask_params
-    params.require(:subtask).permit(:description, :task, :status, :subtask_date, :subtask_hour)
+    params.require(:subtask).permit(:description, :task_id, :status, :subtask_date, :subtask_hour)
   end
 
   def is_owner?

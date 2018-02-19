@@ -1,14 +1,39 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_task, only: [:show, :destroy, :update]
+  before_action :set_task, only: [:show, :destroy, :update, :status]
   before_action :is_owner?, only: [:destroy, :update]
 
   def show
   end
 
+  def new
+    @task = Task.new
+  end
+
   def index
-    @tasks = current_user.task
+    # @tasks = current_user.task
+    @tasks = Task.where(type_status: 0).order("task_date ASC")
+  end
+
+  def recent
+    @tasks = Task.recent
+    render action: :index
+  end
+
+  def mytasks
+    @tasks = Task.mytasks(current_user)
+    render action: :index
+  end
+
+  def alltasks
+    @tasks = Task.alltasks
+    render action: :index    
+  end
+
+  def status
+    @task.update_attribute(:status, 1)
+    redirect_to task_path(@task.id), :notice => "Finished task"  
   end
 
   def create
@@ -17,11 +42,12 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to "/tasks/#{@task.id}" }
+        format.html { redirect_to task_path(@task.id), notice: "The task (#{@task.title}) has been created." }
       else
-        format.html { redirect_to main_app.root_url, notice: @task.errors }
+        format.html { render :new }
       end
     end
+
   end
 
   def update
@@ -42,6 +68,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def action_reload_painel
+    render :partial => "tasks/shared/paineltask"
+  end
+  
   private
 
   def set_task

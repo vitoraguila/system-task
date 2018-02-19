@@ -1,0 +1,55 @@
+<%= render partial: 'tasks/shared/paineltask' %>
+
+<%= render partial: 'tasks/shared/subtask' %>
+
+  <!-- Modal add subtask -->
+  <div id="modalAddSubtask" class="modal">
+    <div class="modal-content">
+      <h4>Add Subtask</h4>
+      <%= simple_form_for Subtask.new, html: { class: "new_subtask" } do |t|   %>
+        <%= t.input :task_id, :as => :hidden, :input_html => { :value => @task.id } %>
+        <%= t.input :description, as: :text, input_html: { class: "materialize-textarea" }  %>
+        <div class="row">
+          <div class="col s6">
+            <%= t.input :subtask_date, as: :date, html5: true %>
+          </div>
+          <div class="col s6">
+            <%= t.input :subtask_hour, as: :time, html5: true %>
+          </div>
+        </div>   
+        <%= t.button :submit %>
+      <% end %> 
+      <div class="modal-footer">
+        <a  class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal edit task -->
+  <div id="modalEditTask" class="modal" style="max-height:80%;">
+    <div class="modal-content">
+      <h4>Edit Task</h4>
+        <%= simple_form_for @task, html: { class: "update_task" } do |t|   %>
+          <%= t.input :title, label: 'Title' %>
+          <%= t.input :description, as: :text, input_html: { class: "materialize-textarea" }  %>
+          <div class="row">
+            <div class="col s4">
+              <%= t.input :type_status, prompt: "Select status", input_html: { class: "input-field" } %>
+            </div>
+            <div class="col s4">
+              <%= t.input :task_date, as: :date, html5: true %>
+            </div>
+            <div class="col s4">
+              <%= t.input :task_hour, as: :time, html5: true %>
+            </div>
+          </div>
+          <%= t.button :submit %>
+        <% end %>
+      <div class="modal-footer">
+        <a  class="modal-action modal-close waves-effect waves-green btn-flat">Fechar</a>
+      </div>
+    </div>
+  </div>
+
+

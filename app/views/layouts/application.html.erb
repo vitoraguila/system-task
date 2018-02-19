@@ -9,6 +9,32 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <%= render "shared/navbar" %>
+    </header
+
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer>
+      <%= render "shared/footer" %>
+    </footer>
+
+    
+    <% if notice %>
+        <script>
+            Materialize.toast('<%= notice %>', 4000, 'green')
+        </script>
+    <% end %>
+
+    <% if alert %>
+        <script>
+            Materialize.toast('<%= alert %>', 4000, 'red')
+        </script>
+    <% end %>
+
   </body>
 </html>

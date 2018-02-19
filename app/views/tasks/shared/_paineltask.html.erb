@@ -1,0 +1,64 @@
+<div class="col s12">
+  <div class="row cards">
+    <div class="card horizontal render-task">
+             <div class="card-content col s12 task-card">  
+        <div class="col s6">
+          <div class="row" style="margin:0px;">
+            <h4>Task #<%= @task.id %> - <%= @task.title %></h4>
+          </div>
+
+          <div class="row">
+            <%
+              if @task.status == "open"
+                color = "green"
+              else
+                color = "grey"
+              end
+            %>
+            <span class="left new badge <%= color %>" data-badge-caption="<%= @task.status.upcase %>"></span>
+          </div>
+
+          <div class="row" style="margin:0px;">
+            <h6>Task of <b class="green-text darken-2"><%= @task.user.name %></b></h6>
+            <%= (@task.task_date)? @task.task_date.strftime("%d/%m/%Y") : '' %>-
+            <%= @task.task_hour %>
+           
+          </div>
+        </div>
+
+        <div class="col s6">
+          <p>
+            <%= @task.description %>
+          </p>
+        </div>
+        
+        <% if @task.user == current_user %>
+          <div class="col s12" style="margin-top:20px;">
+            <div class="row btn-actions">
+              <% 
+                if @task.status == "finished"
+                  class_disabled = "disabled"
+                else
+                  class_disabled = ""
+                end 
+              %> 
+              <%= link_to("FINISHED TASK", task_status_path(@task.id), :confirm => "Are you sure?", :method => :post, class: "#{ class_disabled } waves-effect waves-light btn blue left", style:"margin:10px;" )%>
+              
+              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left" href="#modalAddSubtask">Create Subtask</a>
+
+              <a style="margin:10px;" class="waves-effect waves-light btn modal-trigger left" href="#modalEditTask">Edit Task</a>
+
+              <%= form_for @task, method: 'delete', html: {class: 'remove_tasks left'} do |f| %>
+                <button type='submit' style="margin:10px;" class="waves-effect waves-light btn grey">Remove Task</button>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+<br/><br/>
+
+</div>

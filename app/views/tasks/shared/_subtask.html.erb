@@ -1,0 +1,61 @@
+<div class="col s12">
+  <h4 class="center-align">Sub Task</h4>
+</div>
+
+
+<div class="row cards">
+  <div class="col s12">
+    <div class="card horizontal">
+      <div class="card-content col s12">
+        <table class="striped responsive-table subtask-box">
+          <thead>
+            <tr>
+                <th>Description</th>
+                <th>Date/Hour</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+          </thead>
+          
+          <tbody class="task_list">
+            <% @task.subtask.each do |t| %>
+              <tr class="subtask" id="subtask_<%= t.id %>">
+                <td><%= t.description %></td>
+                <td>
+                  <%= (t.subtask_date)? t.subtask_date.strftime("%d/%m/%Y") : '' %>
+                  -
+                  <%= t.subtask_hour %>
+                </td>
+                <td>
+                  <%
+                    if t.status == "open"
+                      color = "green"
+                    else
+                      color = "grey"
+                    end
+                  %>
+                  <span class="left new badge <%= color %>" data-badge-caption="<%= t.status.upcase %>"></span>
+                <td>
+                <% if @task.user == current_user %>
+                  <% 
+                    if t.status == "finished"
+                      class_disabled = "disabled"
+                    else
+                      class_disabled = ""
+                    end 
+                  %> 
+                  <%= link_to("FINISHED", subtask_status_path(t.id), :confirm => "Are you sure?", :method => :post, class: "waves-effect waves-light btn blue left #{ class_disabled } ", style:"margin-right:5px;" )%>
+                  
+                  <a href="#" class="remove_task btn red" id="<%= t.id %>">
+                    <i class="material-icons icon">delete</i>
+                  </a>
+                <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table> 
+      </div>
+    </div>
+  </div>      
+</div>
