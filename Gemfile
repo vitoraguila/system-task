@@ -38,9 +38,6 @@ gem 'material_icons'
 gem 'simple_form'
 # Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
 gem 'enum_help'
-# A set of Rails responders to dry up your application
-gem "responders"
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
