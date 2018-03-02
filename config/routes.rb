@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :tasks do
     collection do
       get :recent
-      get :mytasks
+      get :mytasks 
       get :alltasks
     end
   end
