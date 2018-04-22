@@ -2,10 +2,6 @@
 
 This app is made for Vitor Hugo Águila Oliveira.
 
-# Images Printscreen
-
-https://drive.google.com/open?id=1pyzZeJO5xndgL29nDz6blxA1arP4IyVi
-
 
 ## Installation
 
@@ -18,7 +14,7 @@ https://www.docker.com/community-edition
 To run the application, first you need to clone the project to you machine by:
 
 ```bash
-git clone git@bitbucket.org:vitoraguila/ruby-coding-test.git
+git clone git@github.com:vitorhao/system-task.git
 ```
 
 Enter to the new directory created:
