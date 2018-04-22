@@ -1,6 +1,6 @@
-# Test Avenue Code (System Task) - Vitor Hugo Águila Oliveira
+# System Task - Vitor Hugo Águila Oliveira
 
-This app is made for purporse of tests to a job position in Avenue code company. Hope you enjoy it.
+This app is made for Vitor Hugo Águila Oliveira.
 
 # Images Printscreen
 
