@@ -1,6 +1,6 @@
 # System Task - Vitor Hugo Águila Oliveira
 
-This app is made for Vitor Hugo Águila Oliveira.
+This application manages team tasks
 
 
 ## Installation
@@ -20,7 +20,7 @@ git clone git@github.com:vitorhao/system-task.git
 Enter to the new directory created:
 
 ```bash
-cd ruby-coding-test
+cd system-task
 ```
 
 Build the project with Docker
